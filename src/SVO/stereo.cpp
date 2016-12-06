@@ -59,9 +59,6 @@ void SVO::localOptimization(const std::vector<libviso2::Matcher::p_match> &pM,
     gtsam::Values initialEstimate;
     //const gtsam::noiseModel::Isotropic::shared_ptr model = gtsam::noiseModel::Isotropic::Sigma(3,sigmaPixel);
 
-    /// debug
-    //std::cout<<endl<< "OK flag1" <<endl;
-
     //setup the first pose
     //assume the first pose is the origin
     gtsam::Pose3 firstPose;
@@ -76,9 +73,6 @@ void SVO::localOptimization(const std::vector<libviso2::Matcher::p_match> &pM,
 
     //setup the stereo camera
     gtsam::StereoCamera stereoCam(firstPose,K);
-
-    /// debug
-    //cout<<"OK flag2" <<endl;
 
 
     size_t counter = 0;
@@ -109,17 +103,11 @@ void SVO::localOptimization(const std::vector<libviso2::Matcher::p_match> &pM,
     lmParams.maxIterations = 10;
     //gtsam::LevenbergMarquardtOptimizer lmOptimizer = gtsam::LevenbergMarquardtOptimizer(graph,initialEstimate,lmParams);
     gtsam::LevenbergMarquardtOptimizer optimizer(graph, initialEstimate, lmParams);
-    std::cout<<"OK flag31"<<endl;
-
-
     //gtsam::Values result = optimizer.optimize();
     gtsam::Values result = optimizer.optimize();
-    std::cout<<"OK flag32"<<endl;
 
     //gtsam::Values result = lmOptimizer.optimize();
     gtsam::Pose3 tempPose = result.at<gtsam::Pose3>(gtsam::Symbol('x',2));
-
-    std::cout<<"OK flag4" <<endl;
 
     //get the new relative pose pointer
     //poseOpt = new libviso2::Matrix(4,4);
@@ -129,14 +117,11 @@ void SVO::localOptimization(const std::vector<libviso2::Matcher::p_match> &pM,
     //gtsam::Marginals marginals(graph,result);
     //std::cout<<endl<<"OK flag51"<<endl;
     //cov = marginals.marginalCovariance(gtsam::Symbol('x',2));
-    std::cout<< "OK flag6" <<endl;
     //cout<<"covarianes"<<endl<<cov<<endl;
-    //cout<<"covarianes"<<endl<<marginals.marginalCovariance(gtsam::Symbol('x',2))<<endl;
-    //delete K;
 
-    std::cout<< "Final result sample: "<<endl;
-    gtsam::Values pose_values = result.filter<gtsam::Pose3> ();
-    pose_values.print("Final camera poses:\n");
+    //std::cout<< "Final result sample: "<<endl;
+    //gtsam::Values pose_values = result.filter<gtsam::Pose3> ();
+    //pose_values.print("Final camera poses:\n");
 
 }
 

@@ -63,10 +63,6 @@ drawer::drawer(std::string poseFileName) {
         tempPose.val[3][1] = 0;
         tempPose.val[3][2] = 0;
         tempPose.val[3][3] = 1;
-        //std::cout<<"..."<<endl;
-        cout<<t1<<" "<<t2<<" "<<t3<<endl;
-        cout<<r11<<" "<<r12<<" "<<r13<<endl;
-        cout<<r21<<" "<<r22<<" "<<r23<<endl;
         mptrPoseTruth->push_back(tempPose);
     }
     std::cout<<"Finish reading!"<<endl;
