@@ -5,3 +5,9 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 CTestTestfile.cmake
+.idea
+data
+build
+Build
+*.*~
+cmake-build-debug
